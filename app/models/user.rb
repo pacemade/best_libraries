@@ -3,7 +3,8 @@ class User < ApplicationRecord
 
   validates :email, :first_name, :last_name, presence: true
 
-  has_many :books, through: :borrows
   has_many :borrows
+  has_many :books, through: :borrows
+
 
 end

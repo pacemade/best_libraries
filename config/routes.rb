@@ -4,9 +4,10 @@ Rails.application.routes.draw do
 
   resources :books
   resources :users
-  resources :borrows, only: [:new, :create]
-  delete 'return' => 'borrows#destroy'
   resources :sessions, only: [:new, :create]
   delete 'logout' => 'sessions#destroy'
+  resources :borrows, only: [:new, :create]
+  delete 'return' => 'borrows#destroy'
+
 
 end

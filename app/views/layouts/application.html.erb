@@ -3,36 +3,40 @@
   <head>
     <title>BestLibrary</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    <h2>Best Library 2018</h2>
-    <% if flash && flash.any?  %>
-      <% flash.each do |key, message| %>
-        <h4><% key %></h4>
-        <% if message && message.class != String && message.any?  %>
-          <% message.each do |sub_message|  %>
-          <h5><%= sub_message %></h5>
-        <% end %>
-        <% else %>
-          <h5><%= message %></h5>
-        <% end  %>
-      <% end %>
-    <% end %>
-    <nav>
-      <% if current_user %>
-      <h4>Currently signed in as: <%= current_user.email %></h2>
-        <%= link_to "Sign Out", logout_path, method: :delete %>
-      <% else %>
-        <%= link_to "Register", new_user_path(@user) %>
-        <%= link_to "Log In", new_session_path%>
-      <% end %>
-    </nav>
-  </header>
 
   <body>
-    <%= yield %>
+    
+    <header>
+      <h2>Best Library 2018</h2>
+      <nav>
+        <% if current_user %>
+          <h4>Currently signed in as: <%= current_user.email %></h2>
+          <%= link_to "Sign Out", logout_path, method: :delete %>
+        <% else %>
+          <%= link_to "Register", new_user_path %>
+          <%= link_to "Login", new_session_path%>
+        <% end %>
+      </nav>
+    </header>
+
+    <main>
+      <% if flash && flash.any?  %>
+        <% flash.each do |key, message| %>
+          <h4><% key %></h4>
+          <% if message && message.class != String && message.any?  %>
+            <% message.each do |sub_message|  %>
+            <h5><%= sub_message %></h5>
+          <% end %>
+          <% else %>
+            <h5><%= message %></h5>
+          <% end  %>
+        <% end %>
+      <% end %>
+      <%= yield %>
+    </main>
+
   </body>
 </html>

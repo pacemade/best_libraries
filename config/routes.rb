@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :books
+  resources :books do
+    collection { post :import }
+  end
+
   resources :users
 
 end

@@ -4,7 +4,7 @@ PART 1
 You just got a your first client as a developer. They want you to build a Ruby on Rails app for their small town library system.
 
 The core functionality of the system is:
-- assume there is only library
+- assume there is only one library
 - we will have have many users
 - a user must sign up to take books out at the library, using their email and a password
 - we will have many books

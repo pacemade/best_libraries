@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
-  require "csv"    
+  require "csv"
+
+  has_many :users
 
 end

@@ -11,3 +11,5 @@
 <h3>Number of pages: <%= @book.pages %></h3>
 
 <h3>Copies Left: <%= @book.copies %></h3>
+
+<%= link_to "Borrow Me!", book_borrows_path(@book), method: :create %>

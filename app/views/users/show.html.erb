@@ -4,8 +4,17 @@
 
 <h3>Books Borrowed</h3>
 
-<% @user.borrows.each do |borrow| %>
-<p>
-  <%= borrow.book.title %> <%= link_to "Return", book_borrow_path(borrow), method: :patch %>
-</p>
+<% @on_loan.each do |borrow| %>
+  <p>
+    <%= borrow.book.title %> <%= link_to "Return", book_borrow_path(borrow), method: :patch %>
+  </p>
+<% end %>
+
+<h3>History</h3>
+
+<% @returned.each do |borrow| %>
+  <p>
+    <%= borrow.book.title %>
+    (Returned: <%= borrow.date_returned %>)
+  </p>
 <% end %>

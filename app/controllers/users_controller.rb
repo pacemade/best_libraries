@@ -21,6 +21,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @on_loan = @user.borrows.where('borrow_status = ?', 'on_loan')
+    @returned = @user.borrows.where('borrow_status = ?', 'returned')
   end
 
   def user_params

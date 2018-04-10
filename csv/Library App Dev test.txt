@@ -6,7 +6,7 @@ You just got a your first client as a developer. They want you to build a Ruby o
 The core functionality of the system is:
 assume there is only one library
 we will have have many users
-- a user must sign up to take books out at the library, using their email and a password
+a user must sign up to take books out at the library, using their email and a password
 we will have many books
 - assume there are multiple copies of each book
 a user can check out many books at once; the book must be returned 1 week after checkout date.

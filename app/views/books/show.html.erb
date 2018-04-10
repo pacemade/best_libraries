@@ -10,8 +10,18 @@
 
 <h3>Number of pages: <%= @book.pages %></h3>
 
-<h3>Copies Left: <%= @book.copies %></h3>
+<h3>Copies Left: <%= @book.copies - @on_loan.count %></h3>
 
-<% if current_user %>
+<% if current_user && @book.copies - @on_loan.count > 0 %>
   <%= link_to "Borrow Me!", book_borrows_path(@book), method: :create %>
+<% end %>
+
+<h2>Admin Panel</h2>
+
+<% if current_user && current_user.kind == "admin" %>
+  <% @on_loan.each do |borrow| %>
+    <p>
+      <%= borrow.user.first_name %> | Due: <%= borrow.due_date.strftime("%A, %B %d") %>
+    </p>
+  <% end %>
 <% end %>

@@ -6,6 +6,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @on_loan = @book.borrows.where("borrow_status = ?", "on_loan")
   end
 
 

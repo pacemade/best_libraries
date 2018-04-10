@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410014111) do
+ActiveRecord::Schema.define(version: 20180410140347) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20180410014111) do
     t.datetime "updated_at", null: false
     t.integer "book_id"
     t.integer "user_id"
+    t.string "borrow_status", default: "on_loan"
+    t.datetime "date_returned"
     t.index ["book_id"], name: "index_borrows_on_book_id"
     t.index ["user_id"], name: "index_borrows_on_user_id"
   end

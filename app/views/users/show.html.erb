@@ -2,11 +2,11 @@
 
 <p>hi <%= @user.first_name %></p>
 
-<h3>Books Borrowed</h3>
+<h3>Currently On Loan</h3>
 
 <% @on_loan.each do |borrow| %>
   <p>
-    <%= borrow.book.title %> <%= link_to "Return", book_borrow_path(borrow), method: :patch %>
+    <%= borrow.book.title %> | Due: <%= borrow.due_date.strftime("%A, %B %d") %> | <%= link_to "Return", book_borrow_path(borrow), method: :patch %>
   </p>
 <% end %>
 
@@ -15,6 +15,6 @@
 <% @returned.each do |borrow| %>
   <p>
     <%= borrow.book.title %>
-    (Returned: <%= borrow.date_returned %>)
+    (Returned: <%= borrow.date_returned.strftime("%A, %B %d") %>)
   </p>
 <% end %>

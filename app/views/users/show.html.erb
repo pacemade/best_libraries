@@ -6,6 +6,6 @@
 
 <% @user.borrows.each do |borrow| %>
 <p>
-  <%= borrow.book.title %> <%= link_to "Return", book_return_path(borrow), method: :delete %>
+  <%= borrow.book.title %> <%= link_to "Return", book_borrow_path(borrow), method: :patch %>
 </p>
 <% end %>

@@ -10,11 +10,14 @@ class BorrowsController < ApplicationController
     end
   end
 
-  def destroy
-    # Nested route gives a book id, need to figure out how to get params to list borrow_id instead
+  def update
+    # Nested route gives a book id for the params, need to figure out how to get params to list borrow_id instead
     # Probably an association problem
     @borrow = Borrow.find(params[:book_id])
-    @borrow.destroy
+    @borrow.update(borrow_status: "returned")
+    # Timezone is UTC
+    @borrow.update(date_returned: Time.now)
+    redirect_to user_url(current_user), notice: "Book Returned!"
   end
   #
   # def borrow_params

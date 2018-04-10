@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :books do
-    resources :borrows, only: [:new, :create]
-    delete 'return' => 'borrows#destroy'
+    resources :borrows, only: [:new, :create, :update]
   end
 
   resources :users

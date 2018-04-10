@@ -11,6 +11,10 @@ class BorrowsController < ApplicationController
   end
 
   def destroy
+    # Nested route gives a book id, need to figure out how to get params to list borrow_id instead
+    # Probably an association problem
+    @borrow = Borrow.find(params[:book_id])
+    @borrow.destroy
   end
   #
   # def borrow_params

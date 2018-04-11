@@ -1,11 +1,5 @@
 <h2>Books Index</h2>
 
-<% if current_user && current_user.kind == "admin" %>
-  <p>
-    <%= link_to "Add A Book", new_book_path %>
-  </p>
-<% end %>
-
 <% @books.each do |book| %>
   <%= link_to book.title, book_path(book) %> </br>
 <% end %>

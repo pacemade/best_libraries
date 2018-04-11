@@ -12,11 +12,13 @@
     <header>
       <h1><%= link_to "Best Library 2018", books_path %></h1>
       <nav>
-        <%= link_to "Books Index", books_path %>
         <% if current_user %>
           <h4>Currently signed in as: <%= current_user.email %></h2>
           <%= link_to "My Profile", user_path(current_user) %>
           <%= link_to "Sign Out", logout_path, method: :delete %>
+          <% if current_user && current_user.kind == "admin" %>
+              <%= link_to "Add A Book", new_book_path %>
+          <% end %>
         <% else %>
           <%= link_to "Register", new_user_path %>
           <%= link_to "Login", new_session_path%>

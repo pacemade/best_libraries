@@ -7,6 +7,7 @@ class BorrowsController < ApplicationController
     @book = Book.find(params[:book_id])
     @borrow.book = @book
     @on_loan = @book.borrows.where('borrow_status = ?', 'on_loan')
+    # checks to see if all are loaned
     if @book.copies - @on_loan.count <= 0
       redirect_to request.referrer, notice: "All copies have been loaned, please check back later!"
     else
@@ -22,10 +23,6 @@ class BorrowsController < ApplicationController
     @borrow.update(borrow_status: "returned")
     @borrow.update(date_returned: Time.now)
     redirect_to user_url(current_user), notice: "Book Returned!"
-  end
-
-  def all_loaned?
-
   end
 
 end

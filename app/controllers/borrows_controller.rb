@@ -4,8 +4,13 @@ class BorrowsController < ApplicationController
     @borrow = Borrow.new
     @borrow.due_date = Time.now + 1.week
     @borrow.user = current_user
-    @borrow.book = Book.find(params[:book_id])
-    if @borrow.save
+    @book = Book.find(params[:book_id])
+    @borrow.book = @book
+    @on_loan = @book.borrows.where('borrow_status = ?', 'on_loan')
+    if @book.copies - @on_loan.count <= 0
+      redirect_to request.referrer, notice: "All copies have been loaned, please check back later!"
+    else
+      @borrow.save
       redirect_to user_url(current_user), notice: "Book added!"
     end
   end
@@ -15,13 +20,12 @@ class BorrowsController < ApplicationController
     # Probably an association problem
     @borrow = Borrow.find(params[:book_id])
     @borrow.update(borrow_status: "returned")
-    # Timezone is UTC
     @borrow.update(date_returned: Time.now)
     redirect_to user_url(current_user), notice: "Book Returned!"
   end
-  #
-  # def borrow_params
-  #   params.require(:borrow).permit(:user_id, :book_id)
-  # end
+
+  def all_loaned?
+
+  end
 
 end

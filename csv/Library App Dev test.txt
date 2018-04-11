@@ -10,12 +10,12 @@ a user must sign up to take books out at the library, using their email and a pa
 we will have many books
 assume there are multiple copies of each book
 a user can check out many books at once; the book must be returned 1 week after checkout date.
-- there must be a log of who checked which book out when, and when it was returned
+there must be a log of who checked which book out when, and when it was returned
 a user who is not logged in should be able to see the full list of books in the library
 only a user who is logged in can borrow a book, the user simply clicks a button next to the title of the book which will say "borrow" - this button is only available if the book is not currently signed out by another user
 the user needs to see a list of books they currently have signed out, and their due dates; to "return" a book, the user simply clicks a button next to the title of the book which will say "return"
-- there must be an administrator user who can edit the details of books, add new ones, add new copies of a book, etc.
-- the details page for each book should show the status of each copy of a particular title, including who currently has it signed out, if applicable
+there must be an administrator user who can edit the details of books, add new ones, add new copies of a book, etc.
+the details page for each book should show the status of each copy of a particular title, including who currently has it signed out, if applicable
 - every day at midnight, users with overdue books must be emailed
 the list of potential books is attached as a CSV file, which you will need to load in
 

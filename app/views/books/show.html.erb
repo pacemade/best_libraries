@@ -20,16 +20,17 @@
 
 <% if current_user && current_user.kind == "admin" %>
   <h2>Admin Panel</h2>
+  <%= link_to "Edit Details", edit_book_path(@book) %>
   <h3>Number of of copies on loan: <%= @on_loan.count %></h3>
   <% @on_loan.each do |borrow| %>
     <p>
-    On loan by: <%= borrow.user.email %> | Due: <%= borrow.due_date.strftime("%A, %B %d") %>
+      On loan by: <%= borrow.user.email %> | Due: <%= borrow.due_date.strftime("%A, %B %d") %>
     </p>
   <% end %>
   <h3>Returns</h3>
   <% @returns.each do |returned| %>
     <p>
-    Returned by: <%= returned.user.email %> | On: <%= returned.date_returned.strftime("%B %d, %Y") %>
+      Returned by: <%= returned.user.email %> | Checked out: <%= returned.created_at.strftime("%B %d, %Y") %>  | Returned: <%= returned.date_returned.strftime("%B %d, %Y") %>
     </p>
   <% end %>
 <% end %>

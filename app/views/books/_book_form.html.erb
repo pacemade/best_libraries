@@ -1,0 +1,40 @@
+<%= form_for book do |f| %>
+
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :author%>
+    <%= f.text_field :author %>
+  </p>
+
+  <p>
+    <%= f.label :publisher %>
+    <%= f.text_area :publisher %>
+  </p>
+
+  <p>
+    <%= f.label :genre %>
+    <%= f.text_area :genre %>
+  </p>
+
+  <p>
+    <%= f.label :subgenre %>
+    <%= f.text_area :subgenre %>
+  </p>
+
+  <p>
+    <%= f.label :pages %>
+    <%= f.number_field :pages %>
+  </p>
+
+  <p>
+    <%= f.label :copies%>
+    <%= f.number_field :copies %>
+  </p>
+
+  <%= f.submit 'Submit' %>
+
+<% end %>

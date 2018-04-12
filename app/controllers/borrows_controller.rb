@@ -6,13 +6,13 @@ class BorrowsController < ApplicationController
     @borrow.user = current_user
     @book = Book.find(params[:book_id])
     @borrow.book = @book
-    @on_loan = @book.borrows.where('borrow_status = ?', 'on_loan')
+    @on_loan = @book.borrows.on_loan
     # checks to see if all are loaned
-    if @book.copies - @on_loan.count <= 0
-      redirect_to request.referrer, notice: "All copies have been loaned, please check back later!"
-    else
+    if Borrow.book_available?(@book, @on_loan)
       @borrow.save
       redirect_to user_url(current_user), notice: "Book added!"
+    else
+      redirect_to request.referrer, notice: "All copies have been loaned, please check back later!"
     end
   end
 

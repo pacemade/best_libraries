@@ -8,8 +8,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @on_loan = @book.borrows.where("borrow_status = ?", "on_loan")
-    @returns = @book.borrows.where("borrow_status = ?", "returned")
+    @on_loan = @book.borrows.on_loan
+    @returns = @book.borrows.returns
   end
 
   def new
@@ -45,7 +45,10 @@ class BooksController < ApplicationController
     end
   end
 
+  private
+
   def book_params
     params.require(:book).permit(:title, :author, :genre, :subgenre, :pages, :publisher, :copies)
   end
+
 end

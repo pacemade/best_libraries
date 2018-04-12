@@ -21,9 +21,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @on_loan = @user.borrows.where('borrow_status = ?', 'on_loan')
-    @returned = @user.borrows.where('borrow_status = ?', 'returned')
+    @on_loan = @user.borrows.on_loan
+    @returned = @user.borrows.returns
   end
+
+  private
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)

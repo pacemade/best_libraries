@@ -1,4 +1,6 @@
 class BorrowsController < ApplicationController
+  before_action :authenticate_user!
+
 
   def create
     @borrow = Borrow.new

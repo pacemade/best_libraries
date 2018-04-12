@@ -16,7 +16,7 @@
           <h4>Currently signed in as: <%= current_user.email %></h2>
           <%= link_to "My Profile", user_path(current_user) %>
           <%= link_to "Sign Out", logout_path, method: :delete %>
-          <% if current_user && current_user.kind == "admin" %>
+          <% if current_user && current_user.admin == true %>
               <%= link_to "Add A Book", new_book_path %>
           <% end %>
         <% else %>

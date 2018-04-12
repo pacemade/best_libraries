@@ -8,39 +8,47 @@
   </head>
 
   <body>
+    <div class="container">
 
-    <header>
-      <h1><%= link_to "Best Library 2018", books_path %></h1>
-      <nav>
-        <% if user_signed_in? %>
-          <h4>Currently signed in as: <%= current_user.email %></h2>
-          <%= link_to "My Profile", current_user %>
-          <%= link_to "Sign Out", destroy_user_session_path, :method => :delete  %>
-          <% if current_user.admin == true %>
-              <%= link_to "Add A Book", new_book_path %>
+        <header>
+          <h1><%= link_to "Best Library 2018", books_path %></h1>
+          <% if user_signed_in? %>
+            <h6>Currently signed in as: <%= current_user.email %></h6>
           <% end %>
-        <% else %>
-          <%= link_to "Register", new_user_registration_path %>
-          <%= link_to "Login", new_user_session_path%>
-        <% end %>
-      </nav>
-    </header>
+          <nav>
+            <ul class="nav">
+              <% if user_signed_in? %>
+                <li class="nav-item"><%= link_to "My Profile", current_user, :class => "nav-link" %></li>
+                <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class => "nav-link"  %></li>
+                <% if current_user.admin == true %>
+                    <li class="nav-item"><%= link_to "Add A Book", new_book_path, :class => "nav-link" %></li>
+                <% end %>
+              <% else %>
+                <li class="nav-item"><%= link_to "Register", new_user_registration_path, :class => "nav-link" %></li>
+                <li class="nav-item"><%= link_to "Login", new_user_session_path, :class => "nav-link"%></li>
+              <% end %>
+            </ul>
+          </nav>
+        </header>
 
-    <main>
-      <% if flash && flash.any?  %>
-        <% flash.each do |key, message| %>
-          <h4><% key %></h4>
-          <% if message && message.class != String && message.any?  %>
-            <% message.each do |sub_message|  %>
-            <h5><%= sub_message %></h5>
+        <main>
+          <div class="alert">
+          <% if flash && flash.any?  %>
+            <% flash.each do |key, message| %>
+              <h4><% key %></h4>
+              <% if message && message.class != String && message.any?  %>
+                <% message.each do |sub_message|  %>
+                <h5><%= sub_message %></h5>
+              <% end %>
+              <% else %>
+                <h5><%= message %></h5>
+              <% end  %>
+            <% end %>
           <% end %>
-          <% else %>
-            <h5><%= message %></h5>
-          <% end  %>
-        <% end %>
-      <% end %>
-      <%= yield %>
-    </main>
+          <%= yield %>
+          </div
+        </main>
 
+    </div>
   </body>
 </html>

@@ -1,5 +1,7 @@
 <h2>Books Index</h2>
 
+<ul class="list-group">
 <% @books.each do |book| %>
-  <%= link_to book.title, book_path(book) %> </br>
+  <li class="list-group-item tab-pane"><%= link_to book.title, book_path(book), :class => "" %></li>
 <% end %>
+</ul>

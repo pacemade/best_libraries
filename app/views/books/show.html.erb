@@ -1,36 +1,40 @@
 <h2>Details for: <%= @book.title %></h2>
 
-<p>Author: <%= @book.author %></p>
+<ul class="list-group">
+  <li class="list-group-item">Author: <%= @book.author %></li>
 
-<p>Publisher: <%= @book.publisher %></p>
+  <li class="list-group-item">Publisher: <%= @book.publisher %></li>
 
-<p>Genre: <%= @book.genre %></h3>
+  <li class="list-group-item">Genre: <%= @book.genre %></li>
 
-<p>Sub-genre: <%= @book.subgenre %></p>
+  <li class="list-group-item">Sub-genre: <%= @book.subgenre %></li>
 
-<p>Number of pages: <%= @book.pages %></p>
+  <li class="list-group-item">Number of pages: <%= @book.pages %></li>
 
-<p>Copies Left: <%= @book.copies - @on_loan.count %></p>
+  <li class="list-group-item">Copies Left: <%= @book.copies - @on_loan.count %></li>
 
-<% if current_user && @book.copies - @on_loan.count > 0 %>
-  <%= link_to "Borrow Me!", book_borrows_path(@book), method: :create %>
-<% end %>
+  <% if current_user && @book.copies - @on_loan.count > 0 %>
+    <li class="list-group-item"><%= link_to "Borrow Me!", book_borrows_path(@book), method: :create, :class => "btn btn-primary" %></li>
+  <% end %>
+</ul>
+
+
 
 
 
 <% if user_signed_in? && current_user.admin == true %>
   <h2>Admin Panel</h2>
-  <%= link_to "Edit Details", edit_book_path(@book) %>
-  <h3>Number of of copies on loan: <%= @on_loan.count %></h3>
-  <% @on_loan.each do |borrow| %>
-    <p>
-      On loan by: <%= borrow.user.email %> | Due: <%= borrow.due_date.strftime("%A, %B %d") %>
-    </p>
-  <% end %>
-  <h3>Returns</h3>
-  <% @returns.each do |returned| %>
-    <p>
-      Returned by: <%= returned.user.email %> | Checked out: <%= returned.created_at.strftime("%B %d, %Y") %>  | Returned: <%= returned.date_returned.strftime("%B %d, %Y") %>
-    </p>
-  <% end %>
+  <h4>Number of of copies on loan: <%= @on_loan.count %></h4>
+  <%= link_to "Edit Book Details", edit_book_path(@book), :class => "btn btn-primary" %>
+  <ul>
+    <% @on_loan.each do |borrow| %>
+        <li class="list-group">On loan by: <%= borrow.user.email %> | Due: <%= borrow.due_date.strftime("%A, %B %d") %></li>
+    <% end %>
+  </ul>
+  <h4>Returns</h4>
+  <ul>
+    <% @returns.each do |returned| %>
+      <li class="list-group">Returned by: <%= returned.user.email %> | Checked out: <%= returned.created_at.strftime("%B %d, %Y") %>  | Returned: <%= returned.date_returned.strftime("%B %d, %Y") %></li>
+    <% end %>
+  </ul>
 <% end %>

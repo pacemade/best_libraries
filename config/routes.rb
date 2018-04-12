@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'users#index'
+  root 'books#index'
 
   resources :books do
     resources :borrows, only: [:new, :create, :update]

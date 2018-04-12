@@ -40,7 +40,7 @@ class BooksController < ApplicationController
   end
 
   def is_admin?
-    if current_user.kind != "admin"
+    if current_user.admin != true
       redirect_to books_url, notice: "You do not have permissions to do that!"
     end
   end

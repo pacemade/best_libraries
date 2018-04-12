@@ -1,5 +1,20 @@
 RailsAdmin.config do |config|
 
+  config.parent_controller = "::ApplicationController"
+
+  config.authorize_with do |controller|
+    redirect_to main_app.root_path unless current_user.admin == true
+  end
+
+  if Borrow.table_exists?
+    RailsAdmin.config Borrow do
+      list do
+        # simply adding fields by their names (order will be maintained)
+        include_fields :id, :due_date, :borrow_status, :date_returned
+      end
+    end
+  end
+
   ### Popular gems integration
 
   ## == Devise ==

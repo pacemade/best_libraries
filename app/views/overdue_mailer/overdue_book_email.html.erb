@@ -1,5 +1,11 @@
-<h1>Overdue#overdue_book_email</h1>
+<p>
+  Hi <%= @user.first_name %>,
+</p>
 
 <p>
-  <%= @greeting %>, find me in app/views/overdue_mailer/overdue_book_email.html.erb
+  Your book, <%= link_to @book.title, @book %>, is overdue!
+</p>
+
+<p>
+  To return your book, please log on to your Best Library 2018 account <%= link_to "here", new_session_url %>.
 </p>

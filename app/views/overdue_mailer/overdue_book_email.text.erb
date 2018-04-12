@@ -1,3 +1,5 @@
-Overdue#overdue_book_email
+Hi <%= @user.first_name %>,
 
-<%= @greeting %>, find me in app/views/overdue_mailer/overdue_book_email.text.erb
+Your book, <%= @book.title %>, is overdue!
+
+To return your book, please log on to your Best Library 2018 account at: <%= new_session_url %>.

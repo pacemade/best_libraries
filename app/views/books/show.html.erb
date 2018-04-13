@@ -20,6 +20,8 @@
     <li class="list-group-item"><%= link_to library.library_name, library_path(library) %>
     <% if user_signed_in? && Borrow.book_available?(@book, library) %>
       <%= link_to "Borrow Me!", book_borrows_path(@book, :library_id => library), method: :create, :class => "btn btn-primary" %>
+    <% else %>
+      <%= link_to "Notify Me When This is Available", user_notifications_path(current_user, :library_id => library, :book_id => @book), method: :create, :class => "btn btn-primary" %>
     <% end %>
       <h6>Copies Left: <%= Borrow.copies_available(@book, library) - Borrow.on_loan_count(@book, library) %><h4></li>
   <% end %>

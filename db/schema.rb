@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413143917) do
+ActiveRecord::Schema.define(version: 20180413151248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,18 @@ ActiveRecord::Schema.define(version: 20180413143917) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.boolean "notified", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "book_id"
+    t.bigint "library_id"
+    t.bigint "user_id"
+    t.index ["book_id"], name: "index_notifications_on_book_id"
+    t.index ["library_id"], name: "index_notifications_on_library_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "first_name"
@@ -81,4 +93,7 @@ ActiveRecord::Schema.define(version: 20180413143917) do
   add_foreign_key "borrows", "libraries"
   add_foreign_key "copies", "books"
   add_foreign_key "copies", "libraries"
+  add_foreign_key "notifications", "books"
+  add_foreign_key "notifications", "libraries"
+  add_foreign_key "notifications", "users"
 end

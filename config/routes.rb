@@ -6,13 +6,15 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   devise_scope :user do
-    resources :users, only: [:show]
+    resources :users, only: [:show] do
+      resources :notifications, only: [:create, :update]
+    end
   end
 
   resources :libraries
 
   resources :books do
-    resources :borrows, only: [:new, :create, :update]
+    resources :borrows, only: [:create, :update]
   end
 
 end

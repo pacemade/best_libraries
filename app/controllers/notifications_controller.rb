@@ -1,21 +1,17 @@
-class BorrowsController < ApplicationController
+class NotificationsController < ApplicationController
+
   before_action :authenticate_user!
 
-
   def create
-    @borrow = Borrow.new
-    @borrow.due_date = Time.now + 1.week
-    @borrow.user = current_user
+    @notification = Notification.new
+    @notification.user = current_user
     @book = Book.find(params[:book_id])
-    @borrow.book = @book
+    @notification.book = @book
     @library = Library.find(params[:library_id])
-    @borrow.library = @library
+    @notification.library = @library
     # checks to see if all are loaned
-    if Borrow.book_available?(@book, @library)
-      @borrow.save
-      redirect_to user_url(current_user), notice: "Book added!"
-    else
-      redirect_to request.referrer, notice: "All copies have been loaned, please check back later!"
+    if @notification.save
+      redirect_to user_url(current_user), notice: "Notification Added!"
     end
   end
 
@@ -28,5 +24,4 @@ class BorrowsController < ApplicationController
     # check for notifications
     redirect_to user_url(current_user), notice: "Book Returned!"
   end
-
 end

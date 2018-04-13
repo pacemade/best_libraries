@@ -1,3 +1,46 @@
 <h2>Edit Details</h2>
 
-<%= render 'book_form', book: @book  %>
+<%= form_for @book, :html=> { class: 'form-group' } do |f| %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :author%>
+    <%= f.text_field :author, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :publisher %>
+    <%= f.text_area :publisher, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :genre %>
+    <%= f.text_area :genre, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :subgenre %>
+    <%= f.text_area :subgenre, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :pages %>
+    <%= f.number_field :pages, :class => "form-control" %>
+  </div>
+
+    <div class="form-group">
+      <% @copies.each do |copy| %>
+        <%= f.fields_for copy do |ff|%>
+          <%= ff.label :name, "#{copy.library.library_name} Copies" %>
+          <%= ff.number_field :copies %>
+        <% end %>
+      <% end %>
+    </div>
+
+  <%= f.submit 'Submit', :class => "btn btn-primary" %>
+
+<% end %>

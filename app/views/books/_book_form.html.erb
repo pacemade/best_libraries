@@ -30,20 +30,15 @@
     <%= f.number_field :pages, :class => "form-control" %>
   </div>
 
-  <%= f.submit 'Submit', :class => "btn btn-primary" %>
-
-<% end %>
-
-
-
-  <% @copies.each do |copy| %>
     <div class="form-group">
-      <%= form_for copy, :html=> { class: 'form-group' } do |f| %>
+      <% @copies.each do |copy| %>
         <%= f.fields_for copy do |ff|%>
           <%= ff.label :name, "#{copy.library.library_name} Copies" %>
           <%= ff.number_field :copies %>
         <% end %>
       <% end %>
-      <%= f.submit 'Save Copies', :class => "btn btn-primary" %>
     </div>
-  <% end %>
+
+  <%= f.submit 'Submit', :class => "btn btn-primary" %>
+
+<% end %>

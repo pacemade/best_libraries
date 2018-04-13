@@ -2,6 +2,7 @@ class Borrow < ApplicationRecord
 
   belongs_to :user
   belongs_to :book
+  belongs_to :library
 
   scope :on_loan, -> { where(borrow_status: "on_loan") }
   scope :returns, -> { where(borrow_status: "returned") }

@@ -18,7 +18,8 @@
 <ul class="list-group">
   <% @libraries.each do |library| %>
     <li class="list-group-item"><%= link_to library.library_name, library_path(library) %>
-    <%= link_to "Borrow Me!", book_borrows_path(@book, :library_id => library), method: :create, :class => "btn btn-primary" %></li>
+    <%= link_to "Borrow Me!", book_borrows_path(@book, :library_id => library), method: :create, :class => "btn btn-primary" %>
+    <h6>Copies Left: <%= Borrow.copies_available(@book, library) - Borrow.on_loan_count(@book, library) %><h4></li>
   <% end %>
 </ul>
 

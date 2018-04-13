@@ -4,7 +4,7 @@
 
 <ul class="list-group">
   <% @on_loan.each do |borrow| %>
-    <li class="list-group-item"><%= borrow.book.title %> | Due: <%= borrow.due_date.strftime("%A, %B %d") %> | <%= link_to "Return", book_borrow_path(borrow), method: :patch, :class => "btn-sm btn-primary" %></li>
+    <li class="list-group-item"><%= borrow.book.title %> | Due: <%= borrow.due_date.strftime("%A, %B %d") %> | Branch: <%= borrow.library.library_name %> | <%= link_to "Return", book_borrow_path(borrow), method: :patch, :class => "btn-sm btn-primary" %></li>
   <% end %>
 </ul>
 
@@ -13,6 +13,6 @@
 <ul class="list-group">
   <% @returned.each do |borrow| %>
     <li class="list-group-item"><%= borrow.book.title %>
-    (Returned: <%= borrow .date_returned.strftime("%A, %B %d") %>)</li>
+    (Returned: <%= borrow .date_returned.strftime("%A, %B %d") %> at <%= borrow.library.library_name %> )</li>
   <% end %>
 </ul>

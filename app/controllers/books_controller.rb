@@ -12,6 +12,7 @@ class BooksController < ApplicationController
     @on_loan = @book.borrows.on_loan
     @returns = @book.borrows.returns
     @libraries = @book.libraries
+
   end
 
   def new

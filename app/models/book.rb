@@ -3,6 +3,7 @@ class Book < ApplicationRecord
 
   validates :title, :pages, :copies, presence: true
 
+  has_many :libraries
   has_many :borrows
   has_many :users, through: :borrows, source: :user
 

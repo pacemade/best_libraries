@@ -4,6 +4,7 @@ class UsersController < Devise::RegistrationsController
     @user = User.find(params[:id])
     @on_loan = @user.borrows.on_loan
     @returned = @user.borrows.returns
+    @notifications = @user.notifications.unsent_notifications
   end
 
   private

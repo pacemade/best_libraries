@@ -16,12 +16,18 @@ class NotificationsController < ApplicationController
   end
 
   def update
-    # Nested route gives a book id for the params, need to figure out how to get params to list borrow_id instead
-    # Probably an association problem
-    @borrow = Borrow.find(params[:book_id])
-    @borrow.update(borrow_status: "returned")
-    @borrow.update(date_returned: Time.now)
+    # Nested route gives a user id for the params, need to figure out how to get params to list notification_id instead
+    @notification = Notification.find(params[:user_id])
+    @notification.update(:notified => true)
     # check for notifications
-    redirect_to user_url(current_user), notice: "Book Returned!"
+    redirect_to user_url(current_user), notice: "Notification deleted!"
   end
+
+  # def destroy
+  #   @notification = Notification.find(params[:notification_id])
+  #   if @notification.destroy
+  #     redirect_to user_url(current_user), notice: "Notification deleted!"
+  #   end
+  # end
+
 end

@@ -8,6 +8,17 @@
   <% end %>
 </ul>
 
+<h3>Watching</h3>
+
+<ul class="list-group">
+  <% @notifications.each do |notification| %>
+    <li class="list-group-item"><%= notification.book.title %> | Branch: <%= notification.library.library_name %> | <%= link_to "Remove Notification", user_notification_path(notification), method: :patch, :class => "btn-sm btn-primary" %></li>
+  <% end %>
+</ul>
+
+
+
+
 <h3>History</h3>
 
 <ul class="list-group">

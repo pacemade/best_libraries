@@ -8,7 +8,7 @@ class Borrow < ApplicationRecord
   scope :returns, -> { where(borrow_status: "returned") }
 
   def self.book_available?(book, library, on_loan)
-    book.copies - on_loan.count >= 1
+    copies = Copy.where("library_id = ?", library.id).where("book_id = ?", book.id).first.copies 
   end
 
 

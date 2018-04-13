@@ -18,7 +18,7 @@
 <ul class="list-group">
   <% @libraries.each do |library| %>
     <li class="list-group-item"><%= link_to library.library_name, library_path(library) %>
-    <%= link_to "Borrow Me!", book_borrows_path(@book,:library => library), method: :create, :class => "btn btn-primary" %></li>
+    <%= link_to "Borrow Me!", book_borrows_path(@book, :library => library), method: :create, :class => "btn btn-primary" %></li>
   <% end %>
 </ul>
 

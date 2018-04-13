@@ -18,10 +18,6 @@
   <% end %>
 </ul>
 
-
-
-
-
 <% if user_signed_in? && current_user.admin == true %>
   <h2>Admin Panel</h2>
   <h4>Number of of copies on loan: <%= @on_loan.count %></h4>

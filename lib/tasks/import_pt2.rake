@@ -2,11 +2,13 @@ require 'csv'
 
 desc "Import part 2 books from csv"
 task import_libraries_books: :environment do
-  Book.destroy_all
   filename = File.join Rails.root, "pt2.csv"
   CSV.foreach(filename) do |row|
-    b = Book.new(title: row[0], author: row[1], genre: row[2], subgenre: row[3], pages: row[4], publisher: row[5], copies: row[6])
+    library = Library.create!(library_name: row[0])
+    book = Book.create!(title: row[1], author: row[2], genre: row[3], subgenre: row[4], pages: row[5], publisher: row[6])
+  #   copy = Copy.new(copies: row[7])
+  #   copy.library = library
+  #   copy.book = book
+  #   copy.save
   end
-  Book.first.destroy
-  # best way to ignore header row for now
 end

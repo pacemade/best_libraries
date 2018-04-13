@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   before_action :is_admin?, only: [:new, :edit, :update]
 
   def index
+    @libraries = Library.all
     @books = Book.all
   end
 
@@ -10,6 +11,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @on_loan = @book.borrows.on_loan
     @returns = @book.borrows.returns
+    @libraries = @book.libraries
   end
 
   def new
@@ -48,7 +50,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :genre, :subgenre, :pages, :publisher, :copies)
+    params.require(:book).permit(:title, :author, :genre, :subgenre, :pages, :publisher)
   end
 
 end

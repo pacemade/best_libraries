@@ -8,9 +8,10 @@ class BorrowsController < ApplicationController
     @borrow.user = current_user
     @book = Book.find(params[:book_id])
     @borrow.book = @book
-    @on_loan = @book.borrows.on_loan
+    @library = Library.find(params[:library_id])
+    @borrow.library = @library
     # checks to see if all are loaned
-    if Borrow.book_available?(@book, @on_loan)
+    if Borrow.book_available?(@book, @library)
       @borrow.save
       redirect_to user_url(current_user), notice: "Book added!"
     else

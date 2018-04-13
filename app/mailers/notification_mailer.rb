@@ -7,6 +7,7 @@ class NotificationMailer < ApplicationMailer
   #
   def book_available_email(notification)
     @notification = notification
+    @notification.update(:notified => true)
     @library = @notification.library
     @book = @notification.book
     @user = @notification.user

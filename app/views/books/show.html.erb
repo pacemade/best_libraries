@@ -11,9 +11,11 @@
 
   <li class="list-group-item">Number of pages: <%= @book.pages %></li>
 
-  <li class="list-group-item">Copies Left: <%= @book.copies - @on_loan.count %></li>
+</ul>
 
-  <% if current_user && @book.copies - @on_loan.count > 0 %>
+<ul class="list-group">
+  <% @libraries.each do |library| %>
+    <li class="list-group-item"><%= link_to library.library_name, library_path(library) %></li>
     <li class="list-group-item"><%= link_to "Borrow Me!", book_borrows_path(@book), method: :create, :class => "btn btn-primary" %></li>
   <% end %>
 </ul>

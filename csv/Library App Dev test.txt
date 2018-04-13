@@ -26,8 +26,8 @@ The big city saw your work on the small town library and now they want to buy yo
 
 You must take the app from PART 1, clone it, and create a new app with the following changes:
 - you must now support many libraries
-- each library needs to have a branch name, address, and phone number
-- each library has it's own collection of different books, the collection for the whole library system is attached as a CSV file, which you will need to load in
+each library needs to have a branch name, address, and phone number
+each library has it's own collection of different books, the collection for the whole library system is attached as a CSV file, which you will need to load in
 - when searching for a book, users need to know which library the book is at
 - if all copies of a book are signed out, users can put a "notification request" on a title; when a copy of the book becomes available, the user needs to be notified via email
 

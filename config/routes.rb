@@ -15,8 +15,4 @@ Rails.application.routes.draw do
     resources :borrows, only: [:new, :create, :update]
   end
 
-
-
-
-
 end

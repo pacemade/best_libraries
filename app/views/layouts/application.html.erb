@@ -15,6 +15,14 @@
           <% if user_signed_in? %>
             <h6>Currently signed in as: <%= current_user.email %></h6>
           <% end %>
+          <div class="float-right">
+            <%= form_tag books_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search], :placeholder => "Find A Book" %>
+                <%= submit_tag "Search", :name => nil, :class => "btn btn-primary"%>
+              </p>
+            <% end %>
+          </div>
           <nav>
             <ul class="nav">
               <% if user_signed_in? %>

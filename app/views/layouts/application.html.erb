@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container-fluid">
 
         <header>
           <h1><%= link_to "Best Libraries 2018", books_path %></h1>
@@ -30,6 +30,7 @@
                 <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class => "nav-link"  %></li>
                 <% if current_user.admin == true %>
                     <li class="nav-item"><%= link_to "Add A Book", new_book_path, :class => "nav-link" %></li>
+                    <li class="nav-item"><%= link_to "Admin Panel", rails_admin_path, :class => "nav-link" %></li>
                 <% end %>
               <% else %>
                 <li class="nav-item"><%= link_to "Register", new_user_registration_path, :class => "nav-link" %></li>

@@ -18,24 +18,13 @@
 <ul class="list-group">
   <% @libraries.each do |library| %>
     <li class="list-group-item"><%= link_to library.library_name, library_path(library) %>
-    <%= link_to "Borrow Me!", book_borrows_path(@book, :library_id => library), method: :create, :class => "btn btn-primary" %>
-    <h6>Copies Left: <%= Borrow.copies_available(@book, library) - Borrow.on_loan_count(@book, library) %><h4></li>
+    <% if user_signed_in? && Borrow.book_available?(@book, library) %>
+      <%= link_to "Borrow Me!", book_borrows_path(@book, :library_id => library), method: :create, :class => "btn btn-primary" %>
+    <% end %>
+      <h6>Copies Left: <%= Borrow.copies_available(@book, library) - Borrow.on_loan_count(@book, library) %><h4></li>
   <% end %>
 </ul>
 
 <% if user_signed_in? && current_user.admin == true %>
-  <h2>Admin Panel</h2>
-  <h4>Number of of copies on loan: <%= @on_loan.count %></h4>
   <%= link_to "Edit Book Details", edit_book_path(@book), :class => "btn btn-primary" %>
-  <ul>
-    <% @on_loan.each do |borrow| %>
-        <li class="list-group">On loan by: <%= borrow.user.email %> | Due: <%= borrow.due_date.strftime("%A, %B %d") %></li>
-    <% end %>
-  </ul>
-  <h4>Returns</h4>
-  <ul>
-    <% @returns.each do |returned| %>
-      <li class="list-group">Returned by: <%= returned.user.email %> | Checked out: <%= returned.created_at.strftime("%B %d, %Y") %>  | Returned: <%= returned.date_returned.strftime("%B %d, %Y") %></li>
-    <% end %>
-  </ul>
 <% end %>

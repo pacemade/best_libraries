@@ -14,7 +14,7 @@ class Borrow < ApplicationRecord
   end
 
   def self.on_loan_count(book, library)
-    Borrow.where("library_id = ?", library.id).where("book_id = ?", book.id).count
+    Borrow.where("library_id = ?", library.id).where("book_id = ?", book.id).on_loan.count
   end
 
   def self.copies_available(book, library)

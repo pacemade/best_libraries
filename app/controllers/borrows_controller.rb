@@ -25,7 +25,9 @@ class BorrowsController < ApplicationController
     @borrow = Borrow.find(params[:book_id])
     @borrow.update(borrow_status: "returned")
     @borrow.update(date_returned: Time.now)
-    # check for notifications
+
+    @notifications = @borrow.book.notifications.unsent_notifications
+    Notification.notification_mailer(@notifications)
     redirect_to user_url(current_user), notice: "Book Returned!"
   end
 

@@ -8,8 +8,8 @@ class NotificationMailer < ApplicationMailer
   def book_available_email(notification)
     @notification = notification
     @library = @notification.library
-    @book = notification.book
-    @user = notification.user
+    @book = @notification.book
+    @user = @notification.user
 
     mail to: @user.email, subject: "Book Available: #{@book.title}"
   end

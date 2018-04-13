@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
   def index
     @libraries = Library.all
-    @books = Book.all
+    @books = Book.search(params[:search])
   end
 
   def show

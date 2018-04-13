@@ -21,4 +21,6 @@ class Borrow < ApplicationRecord
     Copy.where("library_id = ?", library.id).where("book_id = ?", book.id).first.copies
   end
 
+
+
 end

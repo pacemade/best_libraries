@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :libraries
+  resources :copies, only: [:create, :update, :edit]
 
   resources :books do
     resources :borrows, only: [:create, :update]

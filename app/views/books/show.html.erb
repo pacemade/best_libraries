@@ -29,4 +29,5 @@
 
 <% if user_signed_in? && current_user.admin == true %>
   <%= link_to "Edit Book Details", edit_book_path(@book), :class => "btn btn-primary" %>
+  <%= link_to "Edit Book Copy Details", edit_copy_path(@book), :class => "btn btn-primary" %>
 <% end %>

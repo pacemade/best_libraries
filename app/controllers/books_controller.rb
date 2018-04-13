@@ -31,10 +31,15 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @libraries = @book.libraries
+    @copies = Copy.copies_access(@book, @libraries)
   end
 
   def update
     @book = Book.find(params[:id])
+    @libraries = @book.libraries
+    @copies = Copy.copies_access(@book, @libraries)
+
     if @book.update_attributes(book_params)
       redirect_to books_url(@book)
     else
